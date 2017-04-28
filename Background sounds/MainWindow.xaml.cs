@@ -17,12 +17,11 @@ namespace Background_sounds
     /// </summary>
     public partial class MainWindow : Window
     {
-        private ContextMenu TrayMenu = null;
         public MainWindow()
         {
             InitializeComponent();
             PopSettings.Closed += (s, e) => { BodyGrid.Effect = null; };
-            TrayMenu = new ContextMenu
+            var TrayMenu = new ContextMenu
             {
                 Padding = new Thickness(0),
             };
@@ -62,13 +61,13 @@ namespace Background_sounds
             {
                 Icon = Properties.Resources.BS,
                 Visible = true,
-                Text="Background Sound"
+                Text="Background Sounds"
             };
             ni.Click += (s, e) => {
                 if ((e as System.Windows.Forms.MouseEventArgs)?.Button == System.Windows.Forms.MouseButtons.Left)
                 {
-                    this.Show();
-                    this.WindowState = WindowState.Normal;
+                    Show();
+                    WindowState = WindowState.Normal;
                 }
                 else
                 {
@@ -81,7 +80,6 @@ namespace Background_sounds
 
         private void BExit_Click(object sender, RoutedEventArgs e)
         {
-            TrayMenu = null;
             Settings.Save();
             Application.Current.Shutdown();
         }

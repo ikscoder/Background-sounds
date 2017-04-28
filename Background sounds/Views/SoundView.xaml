@@ -5,16 +5,40 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Background_sounds.Views"
              mc:Ignorable="d" 
-             Height="40" Width="350">
+             Height="50" Width="400">
+    <UserControl.Resources>
+        <local:DoubleToPercentConverter x:Key="DoubleToPercentConverter"/>
+    </UserControl.Resources>
     <Border BorderBrush="{DynamicResource SecondaryColor}" BorderThickness="1">
-    <StackPanel Orientation="Horizontal" UseLayoutRounding="True" ScrollViewer.VerticalScrollBarVisibility="Disabled" Background="{DynamicResource AlternativeBackgroundColor}">
-        <Label FontFamily="{DynamicResource FontFamilyHighlight}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="89" Foreground="{DynamicResource SecondaryColor}">
-            <TextBlock Text="{Binding Sound.Name, ElementName=userControl}" TextWrapping="Wrap"/>
-        </Label>
-        <Label Content="Громкость" FontFamily="{DynamicResource FontFamilyHighlight}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right"/>
-        <Slider x:Name="slider" HorizontalAlignment="Right" Width="150" Maximum="1" SmallChange="0.01" TickFrequency="0.1" TickPlacement="BottomRight" LargeChange="0.1" Value="{Binding Sound.Volume, ElementName=userControl,Mode=TwoWay}"/>
-        <Label Content="{Binding Value, ElementName=slider, StringFormat={}{0:P}}" FontFamily="{DynamicResource FontFamilyHighlight}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="0,0,0,0" Width="31"/>
-        <MediaElement x:Name="Media" Visibility="Hidden" Volume="{Binding Value, ElementName=slider}" Source="{Binding Sound.Source, ElementName=userControl}" LoadedBehavior="Manual"/>
-    </StackPanel>
+        <Grid UseLayoutRounding="True" ScrollViewer.VerticalScrollBarVisibility="Disabled" Background="{DynamicResource AlternativeBackgroundColor}">
+            <Label HorizontalAlignment="Left" Width="141" Height="42" VerticalAlignment="Top" Margin="34,0,0,0" FontFamily="{DynamicResource FontFamilyHighlight}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="{DynamicResource SecondaryColor}" FontSize="{DynamicResource FontSizeSmall}" ToolTip="{Binding Sound.Name, ElementName=userControl}">
+                <TextBlock Text="{Binding Sound.Name, ElementName=userControl}" TextWrapping="Wrap"/>
+            </Label>
+            <Label Content="Громкость" FontFamily="{DynamicResource FontFamilyHighlight}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="23" VerticalAlignment="Top" Margin="325,0,0,0" HorizontalAlignment="Left" Width="72" FontSize="{DynamicResource FontSizeSmall}"/>
+            <Slider x:Name="slider" HorizontalAlignment="Right" Width="150" Maximum="1" SmallChange="0.01" TickFrequency="0.1" TickPlacement="BottomRight" LargeChange="0.1" Value="{Binding Sound.Volume, ElementName=userControl, Mode=TwoWay}" Height="32" VerticalAlignment="Top" Margin="0,0,73,0"/>
+            <Label Content="{Binding Value, Converter={StaticResource DoubleToPercentConverter}, ElementName=slider}" FontFamily="{DynamicResource FontFamilyHighlight}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="0,22,6,0" Width="62" Height="24" VerticalAlignment="Top" HorizontalAlignment="Right" FontSize="{DynamicResource FontSizeSmall}"/>
+            <MediaElement x:Name="Media" Visibility="Hidden" Volume="{Binding Value, ElementName=slider}" Source="{Binding Sound.Source, ElementName=userControl}" LoadedBehavior="Manual"/>
+            <Expander Expanded="Expanded" Collapsed="Collapsed" Panel.ZIndex="-1" Margin="0,15,0,0">
+                <Grid Background="{DynamicResource AlternativeBackgroundColor}" Margin="0,2,0,0">
+                    <Button x:Name="BPlay" Style="{DynamicResource TranspButton}" Margin="4,0,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Click="BPlay_Click" Height="30">
+                        <Border>
+                            <Path Data="{StaticResource Play}" Fill="{DynamicResource SecondaryColor}" Stretch="Uniform"/>
+                        </Border>
+                    </Button>
+                    <Button x:Name="BPause" Style="{DynamicResource TranspButton}" Margin="38,0,0,0" HorizontalAlignment="Left" Click="BPause_Click" Height="30">
+                        <Border>
+                            <Path Data="{StaticResource Pause}" Fill="{DynamicResource SecondaryColor}" Stretch="Uniform"/>
+                        </Border>
+                    </Button>
+                    <Button x:Name="BStop" Style="{DynamicResource TranspButton}" Margin="72,0,0,0" HorizontalAlignment="Left" Click="BStop_Click" Height="30">
+                        <Border>
+                            <Path Data="{StaticResource Stop}" Fill="{DynamicResource SecondaryColor}" Stretch="Uniform"/>
+                        </Border>
+                    </Button>
+                    <Slider x:Name="PositionSlider" Margin="107,0,0,0" MouseLeftButtonUp="PositionSlider_MouseLeftButtonUp"/>
+                </Grid>
+
+            </Expander>
+        </Grid>
     </Border>
 </UserControl>

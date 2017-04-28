@@ -184,5 +184,11 @@
   <ItemGroup>
     <SplashScreen Include="BS SS.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\button-29.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\button-fun.mp3" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

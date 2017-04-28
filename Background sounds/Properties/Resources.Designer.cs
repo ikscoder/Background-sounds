@@ -69,5 +69,24 @@ namespace Background_sounds.Properties {
                 return ((System.Drawing.Icon)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.IO.UnmanagedMemoryStream, аналогичного System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream button_29 {
+            get {
+                return ResourceManager.GetStream("button_29", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Byte[].
+        /// </summary>
+        internal static byte[] button_fun {
+            get {
+                object obj = ResourceManager.GetObject("button_fun", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
     }
 }
