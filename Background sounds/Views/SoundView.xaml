@@ -1,0 +1,20 @@
+﻿<UserControl x:Name="userControl" x:Class="Background_sounds.Views.SoundView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Background_sounds.Views"
+             mc:Ignorable="d" 
+             Height="40" Width="350">
+    <Border BorderBrush="{DynamicResource SecondaryColor}" BorderThickness="1">
+    <StackPanel Orientation="Horizontal" UseLayoutRounding="True" ScrollViewer.VerticalScrollBarVisibility="Disabled" Background="{DynamicResource AlternativeBackgroundColor}">
+        <Label FontFamily="{DynamicResource FontFamilyHighlight}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="89" Foreground="{DynamicResource SecondaryColor}">
+            <TextBlock Text="{Binding Sound.Name, ElementName=userControl}" TextWrapping="Wrap"/>
+        </Label>
+        <Label Content="Громкость" FontFamily="{DynamicResource FontFamilyHighlight}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right"/>
+        <Slider x:Name="slider" HorizontalAlignment="Right" Width="150" Maximum="1" SmallChange="0.01" TickFrequency="0.1" TickPlacement="BottomRight" LargeChange="0.1" Value="{Binding Sound.Volume, ElementName=userControl,Mode=TwoWay}"/>
+        <Label Content="{Binding Value, ElementName=slider, StringFormat={}{0:P}}" FontFamily="{DynamicResource FontFamilyHighlight}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="0,0,0,0" Width="31"/>
+        <MediaElement x:Name="Media" Visibility="Hidden" Volume="{Binding Value, ElementName=slider}" Source="{Binding Sound.Source, ElementName=userControl}" LoadedBehavior="Manual"/>
+    </StackPanel>
+    </Border>
+</UserControl>

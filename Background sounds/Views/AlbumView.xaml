@@ -1,0 +1,35 @@
+﻿<UserControl x:Name="userControl" x:Class="Background_sounds.Views.AlbumView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Background_sounds.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="1000" Padding="0">
+    <UserControl.Background>
+        <ImageBrush ImageSource="{Binding Album.Image, ElementName=userControl}" />
+    </UserControl.Background>
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                <GradientStop Color="{DynamicResource PrimaryCColor}" Offset="0.15"/>
+                <GradientStop Color="Transparent" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Label FontFamily="{DynamicResource FontFamilyHighlight}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="22,67,22,383" FontSize="24">
+            <TextBlock Text="{Binding Album.Name, ElementName=userControl}" TextWrapping="Wrap" FontSize="{DynamicResource FontSizeBig}" Foreground="{DynamicResource SecondaryColor}" >
+                <TextBlock.Effect>
+                    <DropShadowEffect ShadowDepth="0" BlurRadius="2"/>
+                </TextBlock.Effect>
+            </TextBlock>
+        </Label>
+        <Button x:Name="BBack" Content="Назад" Width="108" Margin="10,20,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Click="BBack_Click" Height="42"/>
+        <ScrollViewer Margin="10" Grid.Column="1" >
+            <WrapPanel x:Name="Body" Orientation="Horizontal"/>
+        </ScrollViewer>
+    </Grid>
+</UserControl>
